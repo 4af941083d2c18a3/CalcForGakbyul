@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>똘각별 바보</title>
+    <script>
+      function input(id) {
+        return parseInt(document.querySelector('#'+id).value)
+      }
+      function gold2won() {
+        if (blankCheck()) {
+          document.querySelector('#won2goldInput').value = Math.round((input('gold2wonInput') || 0) * input('won') / input('gold'))
+        }
+      }
+      function won2gold() {
+        if (blankCheck()) {
+          document.querySelector('#gold2wonInput').value = Math.round((input('won2goldInput') || 0) * input('gold') / input('won'))
+        }
+      }
+      function price() {
+        if (input('gold2wonInput') && blankCheck()) {
+          document.querySelector('#won2goldInput').value = Math.round(input('gold2wonInput') * input('won') / input('gold'))          
+        }
+      }
+      function blankCheck() {
+        if (input('won') && input('gold')) {return true}
+      }
+    </script>
+  </head>
+  <body style="text-align:center; background-color: #1f2023; color: #ccc">
+    <div>
+      <p style="color: #dfb700">골드 시세</p>
+      <input onchange="price()" id="gold"><span>골드 = </span><input onchange="price()" id="won"><span>원</span>
+      <hr>
+      <p style="color: green">계산</p>
+      <p style="font-size:16px; font-weight:normal">(소수점 반올림)</p>
+      <input onchange="gold2won()" id="gold2wonInput"><span>골드 = </span><input onchange="won2gold()" id="won2goldInput"><span>원</span>
+    </div>
+    <span style="position: absolute; right: 0px; bottom: 0px; color: #262626; font-size: 25px;">메롱</span>
+  </body>
+  <style>
+    body {margin: 0;}
+    input {width:20%; max-width:120px; text-align: center; background-color: #111; color: #ccc; border-color: #ccc;}
+    p {margin:0; font-size:25px;font-weight:bold}
+    hr {margin: 20px;}
+    div {
+      width: calc(100% - 46px);
+      max-width:600px; 
+      border: 1px solid #ccc; 
+      padding: 20px 10px; 
+      display:inline-block; 
+      background-color: #111;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+  </style>
+</html>
